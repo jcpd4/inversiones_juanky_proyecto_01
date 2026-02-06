@@ -12,12 +12,12 @@ El objetivo principal es realizar **Paper Trading**: simular una inversión inic
 *El objetivo es tener un lienzo en blanco listo y profesional.*
 - [x] Crear un repositorio nuevo en GitHub (vacío).
 - [x] Clonar el repositorio en tu ordenador local.
-- [ ] Crear un entorno virtual de Python (`python -m venv venv`).
-- [ ] Activar el entorno virtual.
-- [ ] Crear un archivo `.gitignore` y añadir la línea `venv/` (para no subir librerías basura a GitHub).
-- [ ] Crear un archivo `main.py` vacío.
-- [ ] Hacer el primer commit: "Initial commit: estructura básica".
-- [ ] Subir los cambios a GitHub (`git push`).
+- [x] Crear un entorno virtual de Python (`python -m venv venv`).
+- [x] Activar el entorno virtual.
+- [x] Crear un archivo `.gitignore` y añadir la línea `venv/` (para no subir librerías basura a GitHub).
+- [x] Crear un archivo `main.py` vacío.
+- [x] Hacer el primer commit: "Initial commit: estructura básica".
+- [x] Subir los cambios a GitHub (`git push`).
 
 ### FASE 2: Instalación y Datos (Data Ingestion) 📊
 *El objetivo es que tu código pueda "ver" el mercado.*
