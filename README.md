@@ -10,8 +10,8 @@ El objetivo principal es realizar **Paper Trading**: simular una inversión inic
 
 ### FASE 1: Configuración del Entorno (Setup) 🛠️
 *El objetivo es tener un lienzo en blanco listo y profesional.*
-- [ ] Crear un repositorio nuevo en GitHub (vacío).
-- [ ] Clonar el repositorio en tu ordenador local.
+- [x] Crear un repositorio nuevo en GitHub (vacío).
+- [x] Clonar el repositorio en tu ordenador local.
 - [ ] Crear un entorno virtual de Python (`python -m venv venv`).
 - [ ] Activar el entorno virtual.
 - [ ] Crear un archivo `.gitignore` y añadir la línea `venv/` (para no subir librerías basura a GitHub).
