@@ -21,14 +21,14 @@ El objetivo principal es realizar **Paper Trading**: simular una inversión inic
 
 ### FASE 2: Instalación y Datos (Data Ingestion) 📊
 *El objetivo es que tu código pueda "ver" el mercado.*
-- [ ] Instalar librería de datos (`pip install yfinance`).
-- [ ] Instalar librería de manipulación (`pip install pandas`).
-- [ ] Crear un archivo `requirements.txt` (`pip freeze > requirements.txt`).
-- [ ] En `main.py`, importar `yfinance`.
-- [ ] Escribir una función simple `obtener_datos(simbolo)` que descargue datos de Apple ('AAPL').
-- [ ] Hacer que la función imprima por pantalla las últimas 5 filas de los datos (`print(df.tail())`).
-- [ ] Ejecutar el script y verificar que ves números (precios) en la consola.
-- [ ] Commit: "Feature: Conexión con API de yfinance establecida".
+- [x] Instalar librería de datos (`pip install yfinance`).
+- [x] Instalar librería de manipulación (`pip install pandas`).
+- [x] Crear un archivo `requirements.txt` (`pip freeze > requirements.txt`).
+- [x] En `main.py`, importar `yfinance`.
+- [x] Escribir una función simple `obtener_datos(simbolo)` que descargue datos de Apple ('AAPL').
+- [x] Hacer que la función imprima por pantalla las últimas 5 filas de los datos (`print(df.tail())`).
+- [x] Ejecutar el script y verificar que ves números (precios) en la consola.
+- [x] Commit: "Feature: Conexión con API de yfinance establecida".
 
 ### FASE 3: Definición de la Estrategia (El Cerebro) 🧠
 *El objetivo es definir cuándo comprar y cuándo vender.*
