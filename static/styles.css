@@ -24,7 +24,7 @@ body {
     display: flex;
     justify-content: center;
     background-image: radial-gradient(circle at top right, rgba(47, 129, 247, 0.15) 0%, transparent 40%),
-                      radial-gradient(circle at bottom left, rgba(35, 134, 54, 0.1) 0%, transparent 40%);
+        radial-gradient(circle at bottom left, rgba(35, 134, 54, 0.1) 0%, transparent 40%);
     background-attachment: fixed;
 }
 
@@ -99,7 +99,8 @@ label {
     font-weight: 600;
 }
 
-select, input {
+select,
+input {
     width: 100%;
     padding: 0.8rem 1rem;
     border-radius: 8px;
@@ -110,7 +111,8 @@ select, input {
     transition: border-color 0.3s ease;
 }
 
-select:focus, input:focus {
+select:focus,
+input:focus {
     outline: none;
     border-color: var(--accent-color);
 }
@@ -234,6 +236,13 @@ select:focus, input:focus {
     font-weight: 600;
 }
 
+.canvas-wrapper {
+    position: relative;
+    flex-grow: 1;
+    width: 100%;
+    min-height: 300px;
+}
+
 /* Loader Animation */
 .loader {
     width: 20px;
@@ -245,7 +254,9 @@ select:focus, input:focus {
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* Responsiveness */
@@ -253,6 +264,7 @@ select:focus, input:focus {
     .main-content {
         grid-template-columns: 1fr;
     }
+
     .metrics-grid {
         grid-template-columns: 1fr;
     }

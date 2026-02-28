@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,11 +12,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="container">
-        
+
         <header class="header">
-            <h1 class="gradient-text"> ट्रेडिंग  AlgoTrader Pro</h1>
+            <h1 class="gradient-text"> ट्रेडिंग AlgoTrader Pro</h1>
             <p class="subtitle">Simulador de Inversiones (SMA Strategy)</p>
         </header>
 
@@ -23,7 +25,7 @@
             <!-- Sidebar Setup -->
             <aside class="sidebar glass-panel">
                 <h2>Configuración</h2>
-                
+
                 <div class="input-group">
                     <label for="ticker-select">Selecciona un Activo</label>
                     <select id="ticker-select">
@@ -35,7 +37,7 @@
                         <option value="custom">Personalizado...</option>
                     </select>
                 </div>
-                
+
                 <div class="input-group" id="custom-ticker-group" style="display: none;">
                     <label for="custom-ticker">Ticker Personalizado</label>
                     <input type="text" id="custom-ticker" placeholder="Ej. NVDA">
@@ -50,7 +52,7 @@
                     <span class="btn-text">Ejecutar Simulación</span>
                     <span class="loader" style="display: none;"></span>
                 </button>
-                
+
                 <div id="error-message" class="error-toast" style="display: none;"></div>
             </aside>
 
@@ -75,7 +77,9 @@
                     <div class="chart-header">
                         <h2>Evolución del Portfolio</h2>
                     </div>
-                    <canvas id="portfolioChart"></canvas>
+                    <div class="canvas-wrapper">
+                        <canvas id="portfolioChart"></canvas>
+                    </div>
                 </div>
             </section>
         </main>
@@ -83,4 +87,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
