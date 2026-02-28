@@ -60,6 +60,38 @@ def simulate_trading(ticker: str):
         print(f"Error en simulación: {str(e)}")
         raise HTTPException(status_code=400, detail=str(e))
 
+@app.get("/api/scan_surges")
+def scan_surges(ticker: str, periodo: str = "1y", porcentaje: float = 2.0):
+    from scanner import escanear_subidas
+    try:
+        resultados = escanear_subidas(ticker, periodo, porcentaje)
+        return {
+            "ticker": ticker.upper(),
+            "periodo": periodo,
+            "porcentaje_objetivo": porcentaje,
+            "total_ocurrencias": len(resultados),
+            "eventos": resultados
+        }
+    except Exception as e:
+        print(f"Error en escáner: {str(e)}")
+        raise HTTPException(status_code=400, detail=str(e))
+
+@app.get("/api/scan_surges")
+def scan_surges(ticker: str, periodo: str = "1y", porcentaje: float = 2.0):
+    from scanner import escanear_subidas
+    try:
+        resultados = escanear_subidas(ticker, periodo, porcentaje)
+        return {
+            "ticker": ticker.upper(),
+            "periodo": periodo,
+            "porcentaje_objetivo": porcentaje,
+            "total_ocurrencias": len(resultados),
+            "eventos": resultados
+        }
+    except Exception as e:
+        print(f"Error en escáner: {str(e)}")
+        raise HTTPException(status_code=400, detail=str(e))
+
 # Servimos los archivos estáticos desde la carpeta "static"
 app.mount("/", StaticFiles(directory="static", html=True), name="static")
 
