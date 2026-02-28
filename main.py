@@ -7,6 +7,14 @@ def obtener_datos(simbolo: str) -> pd.DataFrame:
     """Descarga datos históricos de Yahoo Finance del último par de años."""
     print(f"⬇️ Descargando datos para: {simbolo}...")
     data = yf.download(simbolo, period="2y", interval="1d", progress=False)
+    
+    # IMPORTANTE: yfinance ahora devuelve un MultiIndex para las columnas al buscar
+    # un solo Ticker. Si ocurre, aplanamos el DataFrame quedándonos con el nivel 'Price'
+    if isinstance(data.columns, pd.MultiIndex):
+        # Aplanamos el DataFrame para quedarnos con el primer nivel de las columnas.
+        # Por ejemplo de ('Close', 'AAPL') pasamos a simplemente 'Close'
+        data.columns = data.columns.droplevel(-1)
+        
     return data
 
 def ejecutar_bot(ticker: str) -> pd.DataFrame:

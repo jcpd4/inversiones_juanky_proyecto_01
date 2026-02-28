@@ -1,7 +1,7 @@
 # 📈 Bot de Trading & Simulador de Inversiones (Paper Trading)
 
 ## 📌 Descripción del Proyecto
-Este proyecto es un **Bot de Inversión Algorítmica y Simulador de Paper Trading** desarrollado en Python. Diseñado como una herramienta robusta para realizar *backtesting* de estrategias de mercado, el bot descarga el histórico de precios de activos financieros reales, aplica cálculo de indicadores técnicos para buscar oportunidades de mercado y simula la compra y venta de las posiciones.
+Este proyecto es un **Bot de Inversión Algorítmica y Simulador de Paper Trading** en Python equipado con una **Interfaz Web Premium** (FastAPI + Vanilla JS/CSS). Diseñado como una herramienta robusta para realizar *backtesting* de estrategias de mercado, el ecosistema descarga el histórico de precios reales de Yahoo Finance, aplica algoritmos para buscar oportunidades de mercado y simula la compra/venta de posiciones.
 
 El objetivo de esta herramienta es evaluar la rentabilidad teórica de un capital inicial (100€) asumiendo una operativa automatizada. 
 
@@ -15,19 +15,15 @@ El "cerebro" del bot toma sus decisiones basado en una de las estrategias clási
 - 🟢 **Señal de Compra (Golden Cross / 1)**: Se activa cuando la media rápida de 14 días cruza por encima de la media lenta de 50 días. Esto indica un impulso alcista. El bot invierte automáticamente el capital líquido disponible asumiendo una tendencia al alza.
 - 🔴 **Señal de Venta (Death Cross / -1)**: Se activa cuando la media rápida cruza por debajo de la lenta. Esto señala debilidad y un posible cambio a tendencia bajista. El bot vende la totalidad de las acciones para asegurar y proteger el capital.
 
-## 🛠 Requisitos Previos
-- Python 3.8 o superior.
+## 🛠 Requisitos Previos e Instalación
+- Python 3.9 o superior.
 - `pip` (Gestor de paquetes de Python).
 - Conexión a internet (para las descargas de Yahoo Finance).
 
-Es necesario tener instaladas las siguientes librerías core: `pandas`, `yfinance` y `matplotlib`.
-
-## 🚀 Instalación y Ejecución
-
 ### 1. Clonar el repositorio
 ```bash
-git clone https://github.com/tu-usuario/inversiones_01.git
-cd inversiones_01
+git clone https://github.com/jcpd4/inversiones_juanky_proyecto_01.git
+cd inversiones_juanky_proyecto_01
 ```
 
 ### 2. Entorno virtual (Recomendado)
@@ -40,22 +36,34 @@ venv\Scripts\activate
 ```
 
 ### 3. Instalar dependencias
+Instala las librerías Core, de Inteligencia de Datos y el Servidor Web:
 ```bash
-pip install pandas yfinance matplotlib
+pip install pandas yfinance matplotlib fastapi uvicorn
 ```
 
-### 4. Puesta en Marcha (Interfaz Interactiva CLI)
+## 🚀 Uso del Aplicativo Web (Modo Frontend)
+El sistema ha sido mejorado para incluir una interfaz de usuario en el navegador con un diseño Premium y visualización de gráficos nativa (*Chart.js*).
+
+1. Inicia el servidor backend y el manejador de archivos estáticos:
+```bash
+uvicorn api:app --reload
+```
+2. Abre tu navegador web e ingresa a `http://127.0.0.1:8000`.
+3. Selecciona un activo en el menú lateral o escribe uno personalizado (ej. NVDA, AMZN) y ejecuta la simulación interactiva.
+
+## 🖥 Uso del CLI Clásico (Línea de Comandos)
+Si prefieres generar las visualizaciones offline (usando Matplotlib) y utilizar la consola, aún puedes usar el bot original:
 ```bash
 python bot.py
 ```
-Aparecerá un menú interactivo en tu terminal que te permitirá seleccionar perfiles predefinidos (Apple, Bitcoin) o ingresar el *Stock Ticker* de tu preferencia.
-
-El bot ejecutará la descarga de datos, el procesamiento de la estrategia y el backtesting, mostrando por consola una tabla atractiva con el **Capital Final** y la **Rentabilidad (%)**. Finalmente, el script guardará una gráfica `.png` proyectando la evolución de tu inversión teórica de 100€ a lo largo del tiempo.
-
-También puedes ejecutar directamente la lógica cruda para desarrollo:
+O usar el motor puro:
 ```bash
 python main.py
 ```
 
 ## 💼 Perfil Profesional y Contexto
-Este script forma parte de mi portafolio de Ingeniería Informática, concebido para demostrar competencias clave demandadas en el mercado laboral: analítica de datos aplicada a finanzas (Quant/FinTech), desarrollo modular, programación defensiva bajo Python y un uso sólido de ecosistema de librerías como Pandas y Matplotlib.
+Este ecosistema forma parte de mi portafolio de Ingeniería Informática, concebido para demostrar competencias avanzadas:
+- **Analítica de Datos**: (Pandas, yfinance).
+- **Backend / APIs**: (FastAPI, RESTful patterns).
+- **Frontend Moderno**: Arquitectura asíncrona (Fetch API), Vanilla UI/UX Premium (*Glassmorphism*, Variables CSS), *Chart.js*.
+- **Código de Calidad**: Docstrings, separación de responsabilidades, *Clean Code*.
