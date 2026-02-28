@@ -1,91 +1,61 @@
-# 🤖 Bot de Trading & Simulador de Inversiones
+# 📈 Bot de Trading & Simulador de Inversiones (Paper Trading)
 
-Este proyecto es un bot de inversión automatizado desarrollado en Python como parte de mi portafolio de Ingeniería Informática. 
+## 📌 Descripción del Proyecto
+Este proyecto es un **Bot de Inversión Algorítmica y Simulador de Paper Trading** desarrollado en Python. Diseñado como una herramienta robusta para realizar *backtesting* de estrategias de mercado, el bot descarga el histórico de precios de activos financieros reales, aplica cálculo de indicadores técnicos para buscar oportunidades de mercado y simula la compra y venta de las posiciones.
 
-El objetivo principal es realizar **Paper Trading**: simular una inversión inicial de **100€** y aplicar estrategias de análisis técnico (medias móviles) sobre datos reales para evaluar la rentabilidad automática de la cartera.
+El objetivo de esta herramienta es evaluar la rentabilidad teórica de un capital inicial (100€) asumiendo una operativa automatizada. 
 
----
+## 🧠 Estrategia Implementada: Cruce de Medias Móviles (SMA)
+El "cerebro" del bot toma sus decisiones basado en una de las estrategias clásicas y más reconocidas del análisis técnico: **El Cruce de Medias Móviles Simples (SMA)**.
 
-## 🗺️ Roadmap del Proyecto
+1. **SMA Rápida (14 días)**: Reacciona de forma veloz a los cambios recientes de precio.
+2. **SMA Lenta (50 días)**: Indica la tendencia general subyacente del mercado en el mediano plazo.
+   
+**Señales de Trading Generadas**:
+- 🟢 **Señal de Compra (Golden Cross / 1)**: Se activa cuando la media rápida de 14 días cruza por encima de la media lenta de 50 días. Esto indica un impulso alcista. El bot invierte automáticamente el capital líquido disponible asumiendo una tendencia al alza.
+- 🔴 **Señal de Venta (Death Cross / -1)**: Se activa cuando la media rápida cruza por debajo de la lenta. Esto señala debilidad y un posible cambio a tendencia bajista. El bot vende la totalidad de las acciones para asegurar y proteger el capital.
 
-### FASE 1: Configuración del Entorno (Setup) 🛠️
-*El objetivo es tener un lienzo en blanco listo y profesional.*
-- [x] Crear un repositorio nuevo en GitHub (vacío).
-- [x] Clonar el repositorio en tu ordenador local.
-- [x] Crear un entorno virtual de Python (`python -m venv venv`).
-- [x] Activar el entorno virtual.
-- [x] Crear un archivo `.gitignore` y añadir la línea `venv/` (para no subir librerías basura a GitHub).
-- [x] Crear un archivo `main.py` vacío.
-- [x] Hacer el primer commit: "Initial commit: estructura básica".
-- [x] Subir los cambios a GitHub (`git push`).
+## 🛠 Requisitos Previos
+- Python 3.8 o superior.
+- `pip` (Gestor de paquetes de Python).
+- Conexión a internet (para las descargas de Yahoo Finance).
 
-### FASE 2: Instalación y Datos (Data Ingestion) 📊
-*El objetivo es que tu código pueda "ver" el mercado.*
-- [x] Instalar librería de datos (`pip install yfinance`).
-- [x] Instalar librería de manipulación (`pip install pandas`).
-- [x] Crear un archivo `requirements.txt` (`pip freeze > requirements.txt`).
-- [x] En `main.py`, importar `yfinance`.
-- [x] Escribir una función simple `obtener_datos(simbolo)` que descargue datos de Apple ('AAPL').
-- [x] Hacer que la función imprima por pantalla las últimas 5 filas de los datos (`print(df.tail())`).
-- [x] Ejecutar el script y verificar que ves números (precios) en la consola.
-- [x] Commit: "Feature: Conexión con API de yfinance establecida".
+Es necesario tener instaladas las siguientes librerías core: `pandas`, `yfinance` y `matplotlib`.
 
-### FASE 3: Definición de la Estrategia (El Cerebro) 🧠
-*El objetivo es definir cuándo comprar y cuándo vender.*
-- [ ] Crear un nuevo archivo `estrategia.py`.
-- [ ] Crear una función que reciba el DataFrame de datos.
-- [ ] Calcular la "Media Móvil Simple" (SMA) de 14 días y guardarla en una columna nueva.
-- [ ] Calcular la "Media Móvil Simple" de 50 días y guardarla en otra columna.
-- [ ] Limpiar los datos vacíos (`dropna`) que se generan al calcular medias.
-- [ ] Crear una columna nueva llamada `Señal`.
-- [ ] Lógica: Escribir código que ponga un `1` (Compra) en `Señal` cuando la media corta cruce por encima de la larga.
-- [ ] Lógica: Escribir código que ponga un `-1` (Venta) cuando la media corta cruce por debajo de la larga.
-- [ ] Devolver el DataFrame limpio con las señales.
-- [ ] Commit: "Feature: Lógica de cruce de medias móviles implementada".
+## 🚀 Instalación y Ejecución
 
-### FASE 4: El Motor de Backtesting (La Cartera) 💰
-*Aquí es donde simulamos los 100€.*
-- [ ] Crear un nuevo archivo `cartera.py`.
-- [ ] Definir una variable `capital_inicial = 100`.
-- [ ] Definir una variable `dinero_disponible = 100`.
-- [ ] Definir una variable `acciones_poseidas = 0`.
-- [ ] Crear una función `simular_inversion(datos)` que recorra el DataFrame fila por fila (bucle for).
-- [ ] Dentro del bucle: Si la columna `Señal` es `1` (Compra) Y tengo dinero > comprar tantas acciones como pueda.
-- [ ] Restar el costo de la compra a `dinero_disponible` y sumar cantidad a `acciones_poseidas`.
-- [ ] Dentro del bucle: Si la columna `Señal` es `-1` (Venta) Y tengo acciones > vender todo.
-- [ ] Sumar la venta a `dinero_disponible` y poner `acciones_poseidas` a 0.
-- [ ] Guardar en una lista el valor total de la cartera (dinero + valor acciones) en cada día.
-- [ ] Commit: "Feature: Motor de simulación de compra/venta creado".
+### 1. Clonar el repositorio
+```bash
+git clone https://github.com/tu-usuario/inversiones_01.git
+cd inversiones_01
+```
 
-### FASE 5: Análisis de Resultados (El Reporte) 📉
-*Ver si ganamos o perdimos dinero.*
-- [ ] En `main.py`, conectar todo: bajar datos -> aplicar estrategia -> simular cartera.
-- [ ] Al final de la simulación, calcular el valor final total.
-- [ ] Calcular la rentabilidad: `((valor_final - 100) / 100) * 100`.
-- [ ] Imprimir un mensaje bonito: "Resultado: Empezaste con 100€ y acabaste con X€".
-- [ ] Imprimir: "Rentabilidad total: X%".
-- [ ] Commit: "Feature: Calculadora de rentabilidad finalizada".
+### 2. Entorno virtual (Recomendado)
+```bash
+python -m venv venv
+# En macOS/Linux:
+source venv/bin/activate
+# En Windows:
+venv\Scripts\activate
+```
 
-### FASE 6: Conversión a BOT (Interacción) 🤖
-*Hacer que te "hable" o funcione automático.*
-- [ ] Crear un archivo `bot.py`.
-- [ ] Crear un menú simple en consola: "1. Analizar Apple, 2. Analizar Bitcoin, 3. Salir".
-- [ ] Hacer que el usuario pueda escribir el símbolo de la acción (`input`).
-- [ ] Ejecutar la simulación basada en lo que el usuario escribió.
-- [ ] (Opcional - Nivel Pro) Instalar `matplotlib`.
-- [ ] (Opcional - Nivel Pro) Generar un gráfico simple que muestre cómo crecieron (o bajaron) tus 100€.
-- [ ] Commit: "Feature: Interfaz de línea de comandos (CLI) creada".
+### 3. Instalar dependencias
+```bash
+pip install pandas yfinance matplotlib
+```
 
-### FASE 7: Limpieza y Documentación (Para el CV) ✨
-*Esto es lo que mirará el reclutador.*
-- [ ] Borrar cualquier `print` que usaste para depurar y no sirva.
-- [ ] Añadir "Docstrings" a las funciones (comentarios que explican qué hace cada función).
-- [ ] Crear un archivo `README.md` potente.
-- [ ] Escribir en el README: Título del proyecto.
-- [ ] Escribir en el README: Descripción ("Bot que simula inversión algorítmica...").
-- [ ] Escribir en el README: Instrucciones de instalación ("Clonar, pip install...").
-- [ ] Escribir en el README: Un ejemplo de uso (captura de pantalla de la consola).
-- [ ] Commit final: "Release: Versión 1.0 lista para portafolio".
+### 4. Puesta en Marcha (Interfaz Interactiva CLI)
+```bash
+python bot.py
+```
+Aparecerá un menú interactivo en tu terminal que te permitirá seleccionar perfiles predefinidos (Apple, Bitcoin) o ingresar el *Stock Ticker* de tu preferencia.
 
----
-*Autor: Juanky Tranky*
+El bot ejecutará la descarga de datos, el procesamiento de la estrategia y el backtesting, mostrando por consola una tabla atractiva con el **Capital Final** y la **Rentabilidad (%)**. Finalmente, el script guardará una gráfica `.png` proyectando la evolución de tu inversión teórica de 100€ a lo largo del tiempo.
+
+También puedes ejecutar directamente la lógica cruda para desarrollo:
+```bash
+python main.py
+```
+
+## 💼 Perfil Profesional y Contexto
+Este script forma parte de mi portafolio de Ingeniería Informática, concebido para demostrar competencias clave demandadas en el mercado laboral: analítica de datos aplicada a finanzas (Quant/FinTech), desarrollo modular, programación defensiva bajo Python y un uso sólido de ecosistema de librerías como Pandas y Matplotlib.

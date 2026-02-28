@@ -1,34 +1,31 @@
 import pandas as pd
 
-def aplicar_estrategia(datos):
+def aplicar_estrategia(datos: pd.DataFrame) -> pd.DataFrame:
     """
-    Recibe un DataFrame de yfinance, calcula medias móviles
-    y genera una señal de compra (1) o venta (-1).
+    Recibe un DataFrame de precios históricos y aplica una estrategia basada en
+    el cruce de Medias Móviles Simples (SMA).
+    
+    Args:
+        datos (pd.DataFrame): DataFrame que contiene al menos la columna 'Close'.
+        
+    Returns:
+        pd.DataFrame: Un DataFrame actualizado que incluye la media móvil corta ('SMA_14'), 
+                      la media móvil larga ('SMA_50') y una columna 'Señal' (1 para compra, -1 para venta).
     """
-    # Hacemos una copia para no alterar el original
     df = datos.copy()
     
-    # 1. Calcular Medias Móviles Simples (SMA)
-    # Si yfinance devuelve MultiIndex, a veces hay que especificar la columna con cuidado.
-    # Usamos 'Close' que es el precio de cierre.
+    # 1. Calcular la Media Móvil Simple (SMA) de 14 y 50 días
     df['SMA_14'] = df['Close'].rolling(window=14).mean()
     df['SMA_50'] = df['Close'].rolling(window=50).mean()
     
-    # 2. Limpieza de datos
-    # Las primeras 50 filas tendrán NaN (vacío) porque no hay suficientes datos para la media.
-    # Las borramos.
+    # 2. Limpiar los valores nulos generados por las medias móviles
     df.dropna(inplace=True)
     
-    # 3. Generar la Señal
-    # Creamos la columna 'Señal' llena de ceros
+    # 3. Crear la columna 'Señal'
+    # 1 (Compra) cuando la SMA corta cruza por encima de la larga
+    # -1 (Venta) cuando la SMA corta cruza por debajo de la larga
     df['Señal'] = 0
-    
-    # Condición de COMPRA (1): La media rápida (14) supera a la lenta (50)
-    # Significa que el precio está subiendo con fuerza
     df.loc[df['SMA_14'] > df['SMA_50'], 'Señal'] = 1
-    
-    # Condición de VENTA (-1): La media rápida (14) cae por debajo de la lenta (50)
-    # Significa que el precio está perdiendo fuerza
     df.loc[df['SMA_14'] < df['SMA_50'], 'Señal'] = -1
     
     return df
